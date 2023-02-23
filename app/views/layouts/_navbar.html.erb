@@ -1,0 +1,16 @@
+    <nav class='navbar navbar-expand-lg bg-light mb-3'>
+      <div class="container-fluid">
+         <%= link_to 'Watch List', lists_path, class: 'navbar-brand text-decoration-none' %>
+         <div class="d-flex">
+
+            <%= form_with url: "/", method: :get, class: 'd-flex me-2' do |form| %>
+              <%= form.text_field :query, class: 'form-control me-2', placeholder: 'Search' %>
+              <%= form.submit "Search", class: 'btn btn-outline-success' %>
+            <% end %>
+
+            <button class="btn btn-outline-primary" type="submit">
+              <%= link_to 'Create a new list', new_list_path, class: 'text-decoration-none' %>
+            </button>
+         </div>
+      </div>
+    </nav>

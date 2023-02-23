@@ -1,0 +1,11 @@
+<%= render 'banner' %>
+<div class="cards-grid">
+    <% @lists.each do |list| %>
+      <div class="card" style="width: 24rem;">
+        <div class="card-body">
+          <%= image_tag "img1.jpg", alt: "bg", width: 200 %>
+          <h4 class="card-title fw-bold"><%= link_to list.name, list_path(list) %></h4>
+        </div>
+      </div>
+    <% end %>
+  </div>
