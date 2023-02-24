@@ -1,5 +1,16 @@
 <%= render 'lists/banner' %>
-<div class='container'>
+<div class='container' data-controller="add">
+  <%= link_to 'Delete the list', list_path(@list),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class: 'text-danger text-decoration-none mb-3' %>
+  <button type="button" class="btn btn-success"  data-action='click->add#show' data-add-target='button'>Add a movie</button>
+
+  <%= simple_form_for [@list, @bookmark], html: {data: {add_target: "form"}, class: "d-none" } do |f| %>
+    <%= f.association :movie %>
+    <%= f.input :comment %>
+    <%= f.button :submit %>
+  <% end %>
+
   <div class="cards-grid">
     <% @list.movies.each do |movie| %>
       <div class="card mb-3 p-3" style="max-width: 540px;">
@@ -9,7 +20,7 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h3 class="card-title"><%= movie.title %></h3>
+              <h5 class="card-title"><%= movie.title %></h5>
               <p class="card-text"><small class="text-muted"><%= movie.rating %> / 10</small></p>
             </div>
           </div>
@@ -19,9 +30,4 @@
       </div>
     <% end %>
   </div>
-  <%= simple_form_for [@list, @bookmark] do |f| %>
-    <%= f.association :movie %>
-    <%= f.input :comment %>
-    <%= f.button :submit %>
-  <% end %>
 </div>

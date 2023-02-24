@@ -1,11 +1,15 @@
 <%= render 'banner' %>
-<div class="cards-grid">
+<div class="container">
+  <div class="cards-grid">
     <% @lists.each do |list| %>
-      <div class="card" style="width: 24rem;">
-        <div class="card-body">
-          <%= image_tag "img1.jpg", alt: "bg", width: 200 %>
-          <h4 class="card-title fw-bold"><%= link_to list.name, list_path(list) %></h4>
+      <%= link_to list_path(list), :action => 'go' do %>
+        <div class="card-trip">
+          <%= cl_image_tag list.photo.key, height: 150, width: 100, crop: :scale, class: 'card-img-top' %>
+          <div class="card-trip-infos">
+            <h2><%= list.name %></h2>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
+</div>
